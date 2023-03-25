@@ -1,0 +1,151 @@
+/*body{*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*}*/
+/*html, body {*/
+/*    !*width: 100%;*!*/
+/*    height: 100%;*/
+/*    !*padding: 0;*!*/
+/*    !*margin-left: 0;*!*/
+/*}*/
+
+/*main {*/
+/*    !*min-height: calc(100vh - 50px);*!*/
+/*    !*padding-bottom: 60px;*!*/
+/*    !*margin-bottom: -60px;*!*/
+/*    flex: 1 0 auto;*/
+/*    padding: 1rem;*/
+/*}*/
+
+/*footer {*/
+/*    !*min-height: 50px;*!*/
+/*    !*background-color: #555454;*!*/
+/*    !*!*padding: 40px 0;*!*!*/
+/*    !*color: #000000;*!*/
+/*    bottom: 0;*/
+/*    flex: 0 0 auto;*/
+/*    padding: 1rem;*/
+/*    background-color: #1a1e21;*/
+/*    color: #ffffff;*/
+/*}*/
+html,
+body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+p{
+    font-size: 24px;
+    font-family: Helvetica Arial sans-serif;
+}
+
+.main-page {
+    margin-top: 4rem;
+    flex: 1 0 auto;
+    padding: 1rem;
+    min-height: calc(95vh - 50px);
+}
+
+.main-page {
+    max-width: 1720px !important;
+    padding: 0 15px;
+    overflow:hidden;
+}
+article {
+    max-width: 30%;
+}
+    /*
+     * Custom translucent site header
+     */
+footer {
+    flex: 0 0 auto;
+    padding: 1rem;
+    background: #1a1e21;
+    color: #ffffff;
+    /*min-height: 50px;*/
+}
+
+.site-header {
+    background-color: rgba(0, 0, 0, .85);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
+}
+
+.site-header a {
+    color: #8e8e8e;
+    transition: color .15s ease-in-out;
+}
+
+.site-header a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+/*
+ * Dummy devices (replace them with your own or something else entirely!)
+ */
+
+.product-device {
+    position: absolute;
+    right: 10%;
+    bottom: -30%;
+    width: 300px;
+    height: 540px;
+    background-color: #333;
+    border-radius: 21px;
+    transform: rotate(30deg);
+}
+
+.product-device::before {
+    position: absolute;
+    top: 10%;
+    right: 10px;
+    bottom: 10%;
+    left: 10px;
+    content: "";
+    background-color: rgba(255, 255, 255, .1);
+    border-radius: 5px;
+}
+
+.product-device-2 {
+    top: -25%;
+    right: auto;
+    bottom: 0;
+    left: 5%;
+    background-color: #e5e5e5;
+}
+
+
+/*
+ * Extra utilities
+ */
+
+.flex-equal > * {
+    flex: 1;
+}
+
+@media (min-width: 768px) {
+    .flex-md-equal > * {
+        flex: 1;
+    }
+}
+/*   Кнопка яка показує скритий текст START  */
+.option{
+    display: none;
+}
+.show{
+    display: block;
+}
+.btn {
+    background-color: white;
+    color: black;
+    border: 2px solid #4CAF50; /* Green */
+}.btn:hover {
+    background-color: white;
+    color: #4a576c;
+    border: 2px solid #8807f3; /* Green */
+}
+/*  Кнопка яка показує скритий текст END  */
