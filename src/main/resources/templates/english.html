@@ -18,9 +18,20 @@
                 <article class="col-md-11 col-xl-9">
                     <h3>Переклади речення на англійську мову: </h3><br/>
                     <p th:text="${Ukrainian_text}"></p>
+                    <br/>
+<!--                    <a href="/english?name=reload">Reload</a>-->
+                    <br/>
+                    <button class="btn">Дивитися переклад...</button>
                     <br/><br/>
-                    <button class="btn">Дивитися переклад...</button><br/><br/>
-                    <div class="option"><p th:text="${English_text}" /></div>
+                    <div class="option"><p th:text="${English_text}"/></div>
+                    <br/>
+                    <form id="form">
+<!--                        &lt;!&ndash;                        <input type="text" name="test">&ndash;&gt;-->
+                        <input type="submit">
+                    </form>
+                    <div id="result">
+                        <p th:text="${English_text}"/>
+                    </div>
                 </article>
                 <!--                <aside class="col-md-3 col-xl-2">-->
                 <!--                    <p th:text="'Hello, ' + ${main_title} + '!'"></p>-->
@@ -30,11 +41,30 @@
     </main>
     <!--    <footer th:replace="fragments/footer :: footer"></footer>-->
 </div>
+<script th:inline="javascript">
+    // var json = [${object.getJSONString()}];
+    $(function () {
+        $('#button-r').submit(function (e) {
+            e.preventDefault();
+            var data = $("reload").serialize();
+            // var json = [${object.getJSONString()}];
+            $.ajax({
+                type: "GET",
+                url: "/eng?name=reload",
+                dataType: "json",
+                data: json,
+                success: function (result) {
+                    $('#result').html(result);
+                }
+            });
+        });
+    });
+</script>
 <!--Прихований текст за кнопкой-->
-<script>
-$(".btn").click(function (){
-    $(".option").toggle('show')
-})
+<script type="text/javascript">
+    $(".btn").click(function () {
+        $(".option").toggle('show')
+    })
 </script>
 <!--Прихований текст за кнопкой END-->
 <script src="js/script.js"></script>

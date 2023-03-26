@@ -1,0 +1,55 @@
+<!DOCTYPE HTML >
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{fragments/head :: head}"></head>
+<body>
+<!--<div id="button-r" class="btn">Reboot</div>-->
+<form id="form">
+    <!--                        &lt;!&ndash;                        <input type="text" name="test">&ndash;&gt;-->
+    <input type="submit">
+</form>
+<div id="contacts_list"></div>
+<!--<script >-->
+<!--    $(function () {-->
+<!--        $('#form').submit(function (e) {-->
+<!--            e.preventDefault();-->
+<!--            var data = $("reload").serialize();-->
+<!--            // var json = [${object.getJSONString()}];-->
+<!--            $.ajax({-->
+<!--                type: "GET",-->
+<!--                url: "/engres",-->
+<!--                dataType: "json",-->
+<!--                data: json,-->
+<!--                success: function (result) {-->
+<!--                    $('#result').html(result);-->
+<!--                }-->
+<!--            });-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
+<!--<script type="text/javascript">-->
+<!--    $('#form').click(function (){-->
+<!--        $.get("/english?name=reload", function () {-->
+<!--            $('#result').replaceWith(<p th:text="${English_text}"/>);-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
+<script type="text/javascript">
+    $(function () {
+        $.getJSON("/eng2", function (data) {
+            var items = [];
+            $.each(data, function (key, val) {
+                var html = "";
+                Object.keys(val).forEach(function (key) {
+                    if (typeof val[key] != "object") html += key + " : " + val[key] + "<br>"
+                });
+                items.push('<li id="' + key + '">' + html + "</li>")
+            });
+            $("<ul/>", {
+                "class": "my-new-list",
+                html: items.join("")
+            }).appendTo("#contacts_list")
+        })
+    });
+</script>
+</body>
+</html>
