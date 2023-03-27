@@ -17,26 +17,78 @@
             <div class="content row">
                 <article class="col-md-11 col-xl-9">
                     <h3>Переклади речення на англійську мову: </h3><br/>
-                    <p th:text="${Ukrainian_text}"></p>
+                    <bottom id="ukr-text" class="text-show text-show-ukr"><p th:text="${Ukrainian_text}"></p></bottom>
+
                     <br/><br/>
-                    <button class="btn">Дивитися переклад...</button><br/><br/>
-                    <div class="option"><p th:text="${English_text}" /></div>
+                    <a class="content_toggle btn" href="#">Дивитися переклад...</a>
+                    <br/><br/>
+                    <div class="content_block" style="display: none;">
+                        <!--                        <p th:text="${English_text}"/>-->
+                        <bottom id="english-text" class="text-show text-show-eng"><p th:text="${English_text}"/></bottom>
+                    </div>
+
+
+                    <script>
+                        $(document).ready(function () {
+                            $('.content_toggle').click(function () {
+                                $('.content_block').slideToggle(300);
+                                return false;
+                            });
+                        });
+                    </script>
                 </article>
-                <!--                <aside class="col-md-3 col-xl-2">-->
-                <!--                    <p th:text="'Hello, ' + ${main_title} + '!'"></p>-->
-                <!--                </aside>-->
+                <aside class="col-md-3 col-xl-2">
+                    <!--                    <p th:text="'Hello, ' + ${main_title} + '!'"></p>-->
+                    <form id="form">
+                        <!--                        &lt;!&ndash;                        <input type="text" name="test">&ndash;&gt;-->
+                        <!--                                        <input type="submit">-->
+                        <button type="submit">Button</button>
+                    </form>
+                    <!--                                    <button type="submit" formaction="/eng">Button</button>-->
+                    <div id="result">
+                        <!--                        <p th:text="${English_text}"/>-->
+                    </div>
+                    <div id="result2">
+                        <!--                        <p th:text="${English_text}"/>-->
+                    </div>
+                </aside>
             </div>
         </div>
     </main>
     <!--    <footer th:replace="fragments/footer :: footer"></footer>-->
 </div>
 <!--Прихований текст за кнопкой-->
-<script>
-$(".btn").click(function (){
-    $(".option").toggle('show')
-})
+<script type="text/javascript">
+    $('#show-text').button(function () {
+        $(".option").toggle('show')
+    })
 </script>
 <!--Прихований текст за кнопкой END-->
+<script type="text/javascript">
+    $(function () {
+        $('#form').submit(function (e) {
+            e.preventDefault();
+            var data = $(this).serialize();
+            $.ajax({
+                type: "GET",
+                url: "/englishJSON",
+                // dataType: "json",
+                data: data,
+                success: function (result) {
+                    for (key in result) {
+                        if (result.hasOwnProperty(key)) {
+                            if (key == "ukrText") {var ukr = result[key];
+                                $('#ukr-text').html(ukr); }
+                            if (key == "engText") { var egl = result[key];
+                                $('#english-text').html(egl); }
+                        }
+                    }
+                    // console.log(str);
+                }
+            });
+        });
+    });
+</script>
 <script src="js/script.js"></script>
 </body>
 </html>

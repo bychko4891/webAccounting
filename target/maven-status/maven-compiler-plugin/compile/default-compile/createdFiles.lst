@@ -1,11 +1,11 @@
-com/whyit/webAccounting/controllers/EnglishController.class
 com/whyit/webAccounting/controllers/MainController.class
 com/whyit/webAccounting/MyprogectApplication.class
 com/whyit/webAccounting/WebSecurityConfig.class
-com/whyit/webAccounting/English.class
 com/whyit/webAccounting/security/configuration/Config.class
+com/whyit/webAccounting/controllers/TestController.class
+com/whyit/webAccounting/controllers/EnglishController.class
+com/whyit/webAccounting/English.class
 com/whyit/webAccounting/security/Test.class
 com/whyit/webAccounting/user/User.class
 com/whyit/webAccounting/SecurityConfig.class
-com/whyit/webAccounting/controllers/TestController.class
 com/whyit/webAccounting/ServerConfig.class
