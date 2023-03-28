@@ -8,6 +8,11 @@ public class English {
     private String ukrText;
     private String engText;
 
+    public English(String ukrText, String engText) {
+        this.ukrText = ukrText;
+        this.engText = engText;
+    }
+
     public English() {
         this.ukrText = test();
         this.engText = test2();

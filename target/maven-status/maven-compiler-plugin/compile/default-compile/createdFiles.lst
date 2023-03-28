@@ -7,5 +7,6 @@ com/whyit/learnEnglish/ServerConfig.class
 com/whyit/learnEnglish/controllers/TestController.class
 com/whyit/learnEnglish/MyprogectApplication.class
 com/whyit/learnEnglish/English.class
+com/whyit/learnEnglish/CheckBeforeAdding.class
 com/whyit/learnEnglish/SecurityConfig.class
 com/whyit/learnEnglish/security/Test.class
