@@ -14,78 +14,89 @@
 <div class="wrapper">
     <main>
         <div class="container main-page">
-            <div class="content row">
-                <article class="col-md-11 col-xl-9">
-                    <h3>Переклади речення на англійську мову: </h3><br/>
-                    <bottom id="ukr-text" class="text-show text-show-ukr"><p th:text="${Ukrainian_text}"></p></bottom>
+            <div class="row">
+                <nav class="col-xl5 block-main">
+                    <div class="page">
+                        <div class="pcss3t pcss3t-effect-scale pcss3t-theme-1">
+<!--                            <input type="radio" name="pcss3t" checked id="tab1" class="tab-content-first">-->
+<!--                            <label for="tab1"><i class="icon-bolt"></i>Навчатися...</label>-->
+<!--                            <input type="radio" name="pcss3t" id="tab2" class="tab-content-2">-->
+<!--                            <label for="tab2"><i class="icon-picture"></i>Завантажити власний текст...</label>                           -->
+<!--                            <div class="tabs__items">-->
+                            <input type="radio" name="pcss3t" checked id="tab1" class="tab-content-first">
+                            <label for="tab1"><i class="icon-bolt"></i>Навчатися...</label>
+                            <input type="radio" name="pcss3t" id="tab2" class="tab-content-2">
+                            <label for="tab2"><i class="icon-picture"></i>Завантажити власний текст...</label>
+<!--                            </div>-->
+                            <ul>
+                                <li class="tab-content tab-content-first typography">
 
-                    <br/><br/>
-                    <a class="content_toggle btn" href="#">Дивитися переклад...</a>
-                    <br/><br/>
-                    <div class="content_block" style="display: none;">
-                        <!--                        <p th:text="${English_text}"/>-->
-                        <bottom id="english-text" class="text-show text-show-eng"><p th:text="${English_text}"/></bottom>
-                    </div>
 
+                                    <!--&lt;!&ndash;                        <div class="container main-page">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;                            <div class="row">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;                                <nav class="col-xl5 block-main">&ndash;&gt;-->
+                                    <h3>Переклади речення на англійську мову: </h3><br/>
+                                    <bottom id="ukr-text" class="text-show text-show-ukr"><p
+                                            th:text="${Ukrainian_text}"></p>
+                                    </bottom>
 
-                    <script>
-                        $(document).ready(function () {
-                            $('.content_toggle').click(function () {
-                                $('.content_block').slideToggle(300);
-                                return false;
-                            });
-                        });
-                    </script>
-                </article>
-                <aside class="col-md-3 col-xl-2">
-                    <!--                    <p th:text="'Hello, ' + ${main_title} + '!'"></p>-->
-                    <form id="form">
-                        <!--                        &lt;!&ndash;                        <input type="text" name="test">&ndash;&gt;-->
-                        <!--                                        <input type="submit">-->
-                        <button type="submit">Button</button>
-                    </form>
-                    <!--                                    <button type="submit" formaction="/eng">Button</button>-->
-                    <div id="result">
-                        <!--                        <p th:text="${English_text}"/>-->
+                                    <br/><br/>
+                                    <a class="content_toggle btn" href="#">Дивитися переклад...</a>
+                                    <br/><br/>
+                                    <div class="content_block" style="display: none;">
+                                        <!--                        <p th:text="${English_text}"/>-->
+                                        <bottom id="english-text" class="text-show text-show-eng"><p
+                                                th:text="${English_text}"/>
+                                        </bottom>
+                                    </div>
+                                    <br/>
+                                    <!--                    <p th:text="'Hello, ' + ${main_title} + '!'"></p>-->
+                                    <form id="form">
+                                        <!--                        &lt;!&ndash;                        <input type="text" name="test">&ndash;&gt;-->
+                                        <!--                                        <input type="submit">-->
+                                        <button type="submit">Button</button>
+                                    </form>
+
+                                </li>
+
+                                <li class="tab-content tab-content-2 typography">
+                                    <h1>Leonardo da Vinci</h1>
+                                    <p>Italian Renaissance polymath: painter, sculptor, architect, musician,
+                                        mathematician, engineer, inventor, anatomist, geologist, cartographer, botanist,
+                                        and writer. His genius, perhaps more than that of any other figure, epitomized
+                                        the Renaissance humanist ideal. Leonardo has often been described as the
+                                        archetype of the Renaissance Man, a man of "unquenchable curiosity" and
+                                        "feverishly inventive imagination". He is widely considered to be one of the
+                                        greatest painters of all time and perhaps the most diversely talented person
+                                        ever to have lived. According to art historian Helen Gardner, the scope and
+                                        depth of his interests were without precedent and "his mind and personality seem
+                                        to us superhuman, the man himself mysterious and remote". Marco Rosci states
+                                        that while there is much speculation about Leonardo, his vision of the world is
+                                        essentially logical rather than mysterious, and that the empirical methods he
+                                        employed were unusual for his time.</p>
+                                    <p class="text-right"><em>Find out more about Leonardo da Vinci from <a
+                                            href="http://en.wikipedia.org/wiki/Leonardo_da_Vinci" target="_blank">Wikipedia</a>.</em>
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <div id="result2">
-                        <!--                        <p th:text="${English_text}"/>-->
-                    </div>
+                </nav>
+
+                <aside class="col-md-2 col-xl-1 block-right">
+                    <h5>New block_3 New block New block New block New block New block New block New block New block New
+                        block New block </h5>
                 </aside>
             </div>
         </div>
     </main>
-    <!--    <footer th:replace="fragments/footer :: footer"></footer>-->
 </div>
 <!--Прихований текст за кнопкой-->
 <script type="text/javascript">
-    $('#show-text').button(function () {
-        $(".option").toggle('show')
-    })
-</script>
-<!--Прихований текст за кнопкой END-->
-<script type="text/javascript">
-    $(function () {
-        $('#form').submit(function (e) {
-            e.preventDefault();
-            var data = $(this).serialize();
-            $.ajax({
-                type: "GET",
-                url: "/englishJSON",
-                // dataType: "json",
-                data: data,
-                success: function (result) {
-                    for (key in result) {
-                        if (result.hasOwnProperty(key)) {
-                            if (key == "ukrText") {var ukr = result[key];
-                                $('#ukr-text').html(ukr); }
-                            if (key == "engText") { var egl = result[key];
-                                $('#english-text').html(egl); }
-                        }
-                    }
-                    // console.log(str);
-                }
-            });
+    $(document).ready(function () {
+        $('.content_toggle').click(function () {
+            $('.content_block').slideToggle(300);
+            return false;
         });
     });
 </script>

@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.why-it</groupId>
-	<artifactId>webAccounting</artifactId>
+	<artifactId>learnEnglish</artifactId>
 	<version>0.0.2-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>webAccounting</name>
