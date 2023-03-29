@@ -5,6 +5,7 @@ com/whyit/learnEnglish/WebSecurityConfig.class
 com/whyit/learnEnglish/security/configuration/Config.class
 com/whyit/learnEnglish/ServerConfig.class
 com/whyit/learnEnglish/controllers/TestController.class
+com/whyit/learnEnglish/TestMain.class
 com/whyit/learnEnglish/MyprogectApplication.class
 com/whyit/learnEnglish/English.class
 com/whyit/learnEnglish/CheckBeforeAdding.class
