@@ -43,6 +43,40 @@ public class EnglishController {
         }
         printWriter.close();
     }
+    @RequestMapping(path = "/englishADD")
+    public void textADD(HttpServletRequest request, HttpServletResponse response) {
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html");
+        PrintWriter printWriter = null;
+        try {
+            printWriter = response.getWriter();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        String ukrText = request.getParameter("ukrText");
+        String engText = request.getParameter("engText");
+        System.out.println("ukr: " + ukrText + " eng: " + engText);
+        if (!ukrText.isEmpty() && !engText.isEmpty()) {
+            CheckBeforeAdding check = new CheckBeforeAdding(ukrText, engText);
+            printWriter.print(check.checkingTextForLength());
+//            System.out.println("It is OK!!! " + ukrText + " " + engText);
+        } else {
+            printWriter.print("Введіть будь ласка текст" + "ukr: " + ukrText + " eng: " + engText);
+        }
+
+//            CheckBeforeAdding check = new CheckBeforeAdding();
+//        ObjectMapper mapper = new ObjectMapper();
+//        try {
+//            jsonString = mapper.writeValueAsString(english);
+////            System.out.println(jsonString);
+////            return jsonString;
+//        } catch (Exception e) {
+//            jsonString = "Json Error";
+//        }
+//        printWriter.println(jsonString);
+//        System.out.println(jsonString);
+        printWriter.close();
+    }
     //    @GetMapping(value ="/eng", params = "name")
 //    @ResponseStatus(HttpStatus.CONFLICT)
 //    @ResponseBody
@@ -99,39 +133,6 @@ public class EnglishController {
 ////        printWriter.close();
 //        return "english222";
 //    }
-    @RequestMapping(path = "/englishADD")
-    public void textADD(HttpServletRequest request, HttpServletResponse response) {
-        response.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html");
-        PrintWriter printWriter = null;
-        try {
-            printWriter = response.getWriter();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        String ukrText = request.getParameter("ukrText");
-        String engText = request.getParameter("engText");
-        System.out.println("ukr: " + ukrText + " eng: " + engText);
-        if (!ukrText.isEmpty() && !engText.isEmpty()) {
-            CheckBeforeAdding check = new CheckBeforeAdding(ukrText, engText);
-            printWriter.print(check.checkingTheValidityOfTheEngText());
-//            System.out.println("It is OK!!! " + ukrText + " " + engText);
-        } else {
-            printWriter.print("Введіть будь ласка текст" + "ukr: " + ukrText + " eng: " + engText);
-        }
 
-//            CheckBeforeAdding check = new CheckBeforeAdding();
-//        ObjectMapper mapper = new ObjectMapper();
-//        try {
-//            jsonString = mapper.writeValueAsString(english);
-////            System.out.println(jsonString);
-////            return jsonString;
-//        } catch (Exception e) {
-//            jsonString = "Json Error";
-//        }
-//        printWriter.println(jsonString);
-//        System.out.println(jsonString);
-        printWriter.close();
-    }
 
 }

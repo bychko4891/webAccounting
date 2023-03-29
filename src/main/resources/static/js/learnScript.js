@@ -3,7 +3,7 @@ $(function () {
     $('#form').submit(function (e) {
         e.preventDefault();
         var data = $(this).serialize();
-        if ($('input[name="ukrText"]').val() && $('input[name="engText"]').val()) {
+        if ($('textarea[name="ukrText"]').val() && $('textarea[name="engText"]').val()) {
             // якщо всі поля заповнені, виконуємо запит на сервер
             $.ajax({
                 type: "GET",
@@ -36,7 +36,6 @@ $(function () {
         resultDiv.text('');
     }
 });
-
 // Додаємо обробник події на кнопку відправки форми
 $('form').submit(function (event) {
     event.preventDefault();
@@ -63,9 +62,17 @@ $(document).ready(function () {
         });
     });
 });
+// Кнопка, щоб відкрити скритий текст
 $(document).ready(function () {
     $('.content_toggle').click(function () {
         $('.content_block').slideToggle(600);
         return false;
+    });
+});
+//авто висота вікна для вводу тексту
+$(document).ready(function(){
+    $('textarea').on('input', function(){
+        this.style.height = 'auto';
+        this.style.height = (this.scrollHeight) + 'px';
     });
 });
