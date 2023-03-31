@@ -1,9 +1,45 @@
+//Заповнення сторінки першими данними при старті
+$(document).ready(function() {
+    $.ajax({
+        url: "/englishJSON",
+        type: "GET",
+        // dataType: "html",
+        data: {param: "value"},
+        success: function(data) {
+            for (key in data) {
+                if (data.hasOwnProperty(key)) {
+                    if (key == "ukrText") {
+                        var ukr = data[key];
+                        $('#ukr-text').html(ukr);
+                    }
+                    if (key == "engText") {
+                        var egl = data[key];
+                        $('.content_block').hide();
+                        $('#english-text').html(egl);
+                        // $("#show_result").hide();
+                    }
+                }
+            }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.log(textStatus, errorThrown);
+        }
+    });
+});
+//Додавання тексту в базу
 $(function () {
     var resultDiv = $('#result');
     $('#form').submit(function (e) {
         e.preventDefault();
         var data = $(this).serialize();
         if ($('textarea[name="ukrText"]').val() && $('textarea[name="engText"]').val()) {
+            var ukrTextTemp = $('textarea[name="ukrText"]').val();
+            var engTextTemp = $('textarea[name="engText"]').val();
+            // console.log(ukrTextTemp);
+            if(ukrTextTemp.length > 300 || engTextTemp.length >300) {
+                alert("Вибачте, але дозволено довжину речення максимум 300 символів разом з пропусками!!!");
+                return;
+            }
             // якщо всі поля заповнені, виконуємо запит на сервер
             $.ajax({
                 type: "GET",
@@ -41,10 +77,11 @@ $('form').submit(function (event) {
     event.preventDefault();
     sendMessage();
 });
+// Новий текст по запросу
 $(document).ready(function () {
     $('#reload').click(function () {
         $.get("/englishJSON", function (data) {
-            console.log(data); // тут ви можете виконати потрібні дії зі змінною data, яка містить дані з сервера
+            // console.log(data); // тут ви можете виконати потрібні дії зі змінною data, яка містить дані з сервера
             for (key in data) {
                 if (data.hasOwnProperty(key)) {
                     if (key == "ukrText") {

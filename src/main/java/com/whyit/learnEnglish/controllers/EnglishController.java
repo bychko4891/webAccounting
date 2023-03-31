@@ -18,11 +18,11 @@ public class EnglishController {
 
     @GetMapping("/english")
     public String greeting(Model model) {
-        English english = new English();
-        model.addAttribute(english.getUkrText());
+//        English english = new English();
+//        model.addAttribute(english.getUkrText());
         model.addAttribute("title", "English");
-        model.addAttribute("Ukrainian_text", english.getUkrText());
-        model.addAttribute("English_text", english.getEngText());
+//        model.addAttribute("Ukrainian_text", english.getUkrText());
+//        model.addAttribute("English_text", english.getEngText());
         return "english";
     }
 
