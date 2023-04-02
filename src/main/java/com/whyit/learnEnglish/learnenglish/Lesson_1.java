@@ -1,21 +1,21 @@
-package com.whyit.learnEnglish;
+package com.whyit.learnEnglish.learnenglish;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-public class English {
-    private static int id;
+public class Lesson_1 {
+//    private static int id;
     private String ukrText;
     private String engText;
 
-    public English(String ukrText, String engText) {
+    public Lesson_1(String ukrText, String engText) {
         this.ukrText = ukrText;
         this.engText = engText;
-        id++;
+//        id++;
     }
 
-    public English() {
+    public Lesson_1() {
         this.ukrText = test();
         this.engText = test2();
     }

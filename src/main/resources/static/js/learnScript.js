@@ -1,34 +1,24 @@
 //Заповнення сторінки першими данними при старті
-$(document).ready(function() {
+$(document).ready(function () {
     $.ajax({
         url: "/englishJSON",
         type: "GET",
         // dataType: "html",
         data: {param: "value"},
-        success: function(data) {
-            for (key in data) {
-                if (data.hasOwnProperty(key)) {
-                    if (key == "ukrText") {
-                        var ukr = data[key];
-                        $('#ukr-text').html(ukr);
-                    }
-                    if (key == "engText") {
-                        var egl = data[key];
-                        $('.content_block').hide();
-                        $('#english-text').html(egl);
-                        // $("#show_result").hide();
-                    }
-                }
-            }
+        success: function (data) {
+            $('#ukr-text').html(data.ukrText);
+            $('#english-text').html(data.engText);
+            // $("#show_result").hide();
         },
-        error: function(jqXHR, textStatus, errorThrown) {
+        error: function (jqXHR, textStatus, errorThrown) {
             console.log(textStatus, errorThrown);
         }
     });
 });
 //Додавання тексту в базу
 $(function () {
-    var resultDiv = $('#result');
+    var resultDivSuccess = $('#result-success');
+    var resultDivError = $('#result-error');
     $('#form').submit(function (e) {
         e.preventDefault();
         var data = $(this).serialize();
@@ -36,7 +26,7 @@ $(function () {
             var ukrTextTemp = $('textarea[name="ukrText"]').val();
             var engTextTemp = $('textarea[name="engText"]').val();
             // console.log(ukrTextTemp);
-            if(ukrTextTemp.length > 300 || engTextTemp.length >300) {
+            if (ukrTextTemp.length > 300 || engTextTemp.length > 300) {
                 alert("Вибачте, але дозволено довжину речення максимум 300 символів разом з пропусками!!!");
                 return;
             }
@@ -46,19 +36,23 @@ $(function () {
                 url: "/englishADD",
                 data: data,
                 success: function (result) {
-                    // $('#result').html(result);
-                    $('input[name="ukrText"]').val('');
-                    $('input[name="engText"]').val('');
-                    // Отримуємо div-елемент, в який ми будемо поміщати повідомлення
-                    resultDiv.text(result);
-                    setTimeout(hideMessage, 5000);
-                    // console.log(result);
+                    var status = result.status;
+                    if (status == "Success") {
+                        $('textarea[name="ukrText"]').val('');
+                        $('textarea[name="engText"]').val('');
+                        // Отримуємо div-елемент, в який ми будемо поміщати повідомлення
+                        resultDivSuccess.text(result.message);
+                        setTimeout(hideMessageSuccess, 5000);
+                    } else {
+                        resultDivError.text(result.message);
+                        setTimeout(hideMessageError, 5000);
+                    }
                 },
                 error: function () {
                     let shel = {};
                     alert(Boolean(shel))
                     // Поміщаємо повідомлення про помилку в div-елемент
-                    resultDiv.text('Помилка запиту на сервер');
+                    resultDivError.text('Помилка запиту на сервер');
                 }
             });
         } else {
@@ -68,8 +62,14 @@ $(function () {
         }
     });
 
-    function hideMessage() {
-        resultDiv.text('');
+    function hideMessageSuccess() {
+        resultDivSuccess.text('');
+
+    }
+
+    function hideMessageError() {
+
+        resultDivError.text('');
     }
 });
 // Додаємо обробник події на кнопку відправки форми
@@ -82,20 +82,9 @@ $(document).ready(function () {
     $('#reload').click(function () {
         $.get("/englishJSON", function (data) {
             // console.log(data); // тут ви можете виконати потрібні дії зі змінною data, яка містить дані з сервера
-            for (key in data) {
-                if (data.hasOwnProperty(key)) {
-                    if (key == "ukrText") {
-                        var ukr = data[key];
-                        $('#ukr-text').html(ukr);
-                    }
-                    if (key == "engText") {
-                        var egl = data[key];
-                        $('.content_block').hide();
-                        $('#english-text').html(egl);
-                        // $("#show_result").hide();
-                    }
-                }
-            }
+            $('#ukr-text').html(data.ukrText);
+            $('#english-text').html(data.engText);
+            // $("#show_result").hide();
         });
     });
 });
@@ -107,8 +96,8 @@ $(document).ready(function () {
     });
 });
 //авто висота вікна для вводу тексту
-$(document).ready(function(){
-    $('textarea').on('input', function(){
+$(document).ready(function () {
+    $('textarea').on('input', function () {
         this.style.height = 'auto';
         this.style.height = (this.scrollHeight) + 'px';
     });

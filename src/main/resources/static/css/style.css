@@ -22,7 +22,14 @@ textarea {
 textarea {
     min-width: 400px;
 }
-
+#result-error{
+    color: red;
+    font-size: 18px;
+}
+#result-success{
+    color: darkgreen;
+    font-size: 18px;
+}
 .main-page {
     margin-top: 4rem;
     flex: 1 0 auto;

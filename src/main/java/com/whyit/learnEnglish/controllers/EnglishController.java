@@ -1,13 +1,11 @@
 package com.whyit.learnEnglish.controllers;
 
-import com.whyit.learnEnglish.CheckBeforeAdding;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.whyit.learnEnglish.English;
+import com.whyit.learnEnglish.learnenglish.Lesson_1;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,11 +16,7 @@ public class EnglishController {
 
     @GetMapping("/english")
     public String greeting(Model model) {
-//        English english = new English();
-//        model.addAttribute(english.getUkrText());
         model.addAttribute("title", "English");
-//        model.addAttribute("Ukrainian_text", english.getUkrText());
-//        model.addAttribute("English_text", english.getEngText());
         return "english";
     }
 
@@ -33,7 +27,7 @@ public class EnglishController {
         PrintWriter printWriter = null;
         try {
             printWriter = response.getWriter();
-            printWriter.println(new ObjectMapper().writeValueAsString(new English()));
+            printWriter.println(new ObjectMapper().writeValueAsString(new Lesson_1()));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }finally {
@@ -41,22 +35,7 @@ public class EnglishController {
         }
     }
 
-    @GetMapping(path = "/englishADD")
-    public void textADD(HttpServletRequest request, HttpServletResponse response) {
-        response.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html");
-        PrintWriter printWriter = null;
-        try {
-            printWriter = response.getWriter();
-            CheckBeforeAdding check = new CheckBeforeAdding(request.getParameter("ukrText"), request.getParameter("engText"));
-            printWriter.print(check.checkingTextForLength());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }finally {
-            printWriter.close();
-        }
-//            System.out.println("It is OK!!! " + ukrText + " " + engText);
-    }
+
     //    @GetMapping(value ="/eng", params = "name")
 //    @ResponseStatus(HttpStatus.CONFLICT)
 //    @ResponseBody
